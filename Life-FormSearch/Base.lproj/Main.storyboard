@@ -20,6 +20,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="FIQ-vq-REH" id="VoA-qP-2ug"/>
+                            </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="searchItemCell" textLabel="Bs2-dr-1LU" detailTextLabel="gFJ-MO-QAa" style="IBUITableViewCellStyleSubtitle" id="XAC-dk-PY3">
@@ -57,7 +60,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Life-Form Search" id="FMP-zS-uqe"/>
                     <connections>
-                        <outlet property="searchBar" destination="YgB-3C-TkJ" id="lzh-eP-rbF"/>
+                        <outlet property="searchBar" destination="YgB-3C-TkJ" id="UxM-zr-cZE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ger-OI-Ng8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,6 +9,7 @@ import UIKit
 
 class SearchResultTableViewController: UITableViewController {
     
+    
     @IBOutlet var searchBar: UISearchBar!
     
     var items = [SearchItem]()
@@ -18,34 +19,34 @@ class SearchResultTableViewController: UITableViewController {
 
     }
     
+    
     func fetchMatchingItems() {
         self.items = []
         self.tableView.reloadData()
-        
-        let searchItenmController = SearchItemController()
+
+        let searchItemController = SearchItemController()
         let searchTerm = searchBar.text ?? ""
-        
+
         if !searchTerm.isEmpty {
-            let query = ["q" : searchTerm, "page" : "1"]
             
+            let query = ["q" : searchTerm, "page" : "1"]
+
             Task {
                 do {
-                    let fetchedItems = try await searchItenmController.fetchItems(matching: query)
+                    let fetchedItems = try await searchItemController.fetchItems(matching: query)
                     self.items = fetchedItems
                     self.tableView.reloadData()
                 } catch {
-                    print("Error fetching data")
+                    print("Error fetching data from")
                 }
             }
         }
     }
     
+    
     func configure() {
         
     }
-    
-
-    
 
     // MARK: - Table view data source
 
@@ -108,14 +109,15 @@ class SearchResultTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+
+}
+
+extension SearchResultTableViewController: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        fetchMatchingItems()
+        searchBar.resignFirstResponder()
     }
-    */
-
 }
