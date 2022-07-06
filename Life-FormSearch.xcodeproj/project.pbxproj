@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A553812628749C20005F2E95 /* LifeFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553812528749C20005F2E95 /* LifeFormItem.swift */; };
+		A553812828749F0D005F2E95 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553812728749F0D005F2E95 /* SearchItem.swift */; };
+		A553812A287577F8005F2E95 /* PrettyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5538129287577F8005F2E95 /* PrettyJSON.swift */; };
 		A5C4FF9528747DDC00B69545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4FF9428747DDC00B69545 /* AppDelegate.swift */; };
 		A5C4FF9728747DDC00B69545 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4FF9628747DDC00B69545 /* SceneDelegate.swift */; };
 		A5C4FF9C28747DDC00B69545 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C4FF9A28747DDC00B69545 /* Main.storyboard */; };
@@ -14,9 +17,13 @@
 		A5C4FFA128747DE200B69545 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5C4FF9F28747DE200B69545 /* LaunchScreen.storyboard */; };
 		A5C4FFA928747F5300B69545 /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4FFA828747F5300B69545 /* SearchResultTableViewController.swift */; };
 		A5C4FFAB28747F7700B69545 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4FFAA28747F7700B69545 /* DetailsViewController.swift */; };
+		A5F6436C2875837100F37C04 /* SearchItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6436B2875837100F37C04 /* SearchItemController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A553812528749C20005F2E95 /* LifeFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeFormItem.swift; sourceTree = "<group>"; };
+		A553812728749F0D005F2E95 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
+		A5538129287577F8005F2E95 /* PrettyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyJSON.swift; sourceTree = "<group>"; };
 		A5C4FF9128747DDC00B69545 /* Life-FormSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life-FormSearch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5C4FF9428747DDC00B69545 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5C4FF9628747DDC00B69545 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +33,7 @@
 		A5C4FFA228747DE200B69545 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5C4FFA828747F5300B69545 /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		A5C4FFAA28747F7700B69545 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		A5F6436B2875837100F37C04 /* SearchItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItemController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A553812B28757A09005F2E95 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5538129287577F8005F2E95 /* PrettyJSON.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A5C4FF8828747DDC00B69545 = {
 			isa = PBXGroup;
 			children = (
@@ -58,16 +74,28 @@
 		A5C4FF9328747DDC00B69545 /* Life-FormSearch */ = {
 			isa = PBXGroup;
 			children = (
+				A5F6436B2875837100F37C04 /* SearchItemController.swift */,
 				A5C4FF9428747DDC00B69545 /* AppDelegate.swift */,
 				A5C4FF9628747DDC00B69545 /* SceneDelegate.swift */,
 				A5C4FF9A28747DDC00B69545 /* Main.storyboard */,
 				A5C4FFAA28747F7700B69545 /* DetailsViewController.swift */,
 				A5C4FFA828747F5300B69545 /* SearchResultTableViewController.swift */,
+				A5F6436A2875834B00F37C04 /* Models */,
+				A553812B28757A09005F2E95 /* Extensions */,
 				A5C4FF9D28747DE200B69545 /* Assets.xcassets */,
 				A5C4FF9F28747DE200B69545 /* LaunchScreen.storyboard */,
 				A5C4FFA228747DE200B69545 /* Info.plist */,
 			);
 			path = "Life-FormSearch";
+			sourceTree = "<group>";
+		};
+		A5F6436A2875834B00F37C04 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A553812528749C20005F2E95 /* LifeFormItem.swift */,
+				A553812728749F0D005F2E95 /* SearchItem.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,9 +169,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A553812828749F0D005F2E95 /* SearchItem.swift in Sources */,
+				A553812628749C20005F2E95 /* LifeFormItem.swift in Sources */,
 				A5C4FF9528747DDC00B69545 /* AppDelegate.swift in Sources */,
+				A553812A287577F8005F2E95 /* PrettyJSON.swift in Sources */,
 				A5C4FF9728747DDC00B69545 /* SceneDelegate.swift in Sources */,
 				A5C4FFA928747F5300B69545 /* SearchResultTableViewController.swift in Sources */,
+				A5F6436C2875837100F37C04 /* SearchItemController.swift in Sources */,
 				A5C4FFAB28747F7700B69545 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

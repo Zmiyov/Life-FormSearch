@@ -8,38 +8,70 @@
 import UIKit
 
 class SearchResultTableViewController: UITableViewController {
-
+    
+    @IBOutlet var searchBar: UISearchBar!
+    
+    var items = [SearchItem]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    func fetchMatchingItems() {
+        self.items = []
+        self.tableView.reloadData()
+        
+        let searchItenmController = SearchItemController()
+        let searchTerm = searchBar.text ?? ""
+        
+        if !searchTerm.isEmpty {
+            let query = ["q" : searchTerm, "page" : "1"]
+            
+            Task {
+                do {
+                    let fetchedItems = try await searchItenmController.fetchItems(matching: query)
+                    self.items = fetchedItems
+                    self.tableView.reloadData()
+                } catch {
+                    print("Error fetching data")
+                }
+            }
+        }
+    }
+    
+    func configure() {
+        
+    }
+    
+
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return items.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchItemCell", for: indexPath)
+        let searchItem = items[indexPath.row]
 
-        // Configure the cell...
+        var content = cell.defaultContentConfiguration()
+        content.text = searchItem.title
+        content.secondaryText = searchItem.content
+        cell.contentConfiguration = content
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
