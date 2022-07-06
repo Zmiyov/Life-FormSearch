@@ -37,7 +37,7 @@ class SearchResultTableViewController: UITableViewController {
                     self.items = fetchedItems
                     self.tableView.reloadData()
                 } catch {
-                    print("Error fetching data from")
+                    print("Error fetching data from \(error)")
                 }
             }
         }
@@ -66,8 +66,8 @@ class SearchResultTableViewController: UITableViewController {
         let searchItem = items[indexPath.row]
 
         var content = cell.defaultContentConfiguration()
-        content.text = searchItem.title
-        content.secondaryText = searchItem.content
+        content.text = searchItem.scientificName
+        content.secondaryText = searchItem.commonName
         cell.contentConfiguration = content
 
         return cell
