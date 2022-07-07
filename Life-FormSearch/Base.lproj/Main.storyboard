@@ -49,7 +49,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="tvK-az-tdE" kind="show" id="bXO-AC-4u6"/>
+                                    <segue destination="tvK-az-tdE" kind="show" destinationCreationSelector="showSearchItemDetails:" id="bXO-AC-4u6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -87,7 +87,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zja-dE-uNm">
                                         <rect key="frame" x="10" y="282.66666666666669" width="350" height="45"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-3k-2yJ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rights Holder   " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-3k-2yJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <nil key="textColor"/>
@@ -305,6 +305,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nVd-3n-5Hx"/>
+                    <connections>
+                        <outlet property="classLabel" destination="fOW-XK-Chk" id="u7u-qF-tIV"/>
+                        <outlet property="familyLabel" destination="UTf-lX-fIj" id="QtX-NF-uDu"/>
+                        <outlet property="genusLabel" destination="VME-FW-dVL" id="Xgk-Iq-j67"/>
+                        <outlet property="image" destination="Ct3-vE-DYA" id="DfU-QM-Z83"/>
+                        <outlet property="kingdomLabel" destination="Q2E-zd-reQ" id="QuC-ug-lck"/>
+                        <outlet property="orderLabel" destination="Uu8-3d-Ufn" id="rYr-0x-ham"/>
+                        <outlet property="phylumLabel" destination="7Qz-dq-dec" id="XWh-ib-BLq"/>
+                        <outlet property="rightLabel" destination="0fC-3k-2yJ" id="tN2-Lh-l1S"/>
+                        <outlet property="scientificName" destination="4IY-lV-IDj" id="ncJ-Yi-W88"/>
+                        <outlet property="taxonomySource" destination="YTZ-Uo-f5K" id="ltb-v3-dYz"/>
+                        <outlet property="urlLicence" destination="OPu-wR-a0M" id="AFy-6n-v02"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4c-XQ-2lf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,6 +14,7 @@ class SearchResultTableViewController: UITableViewController {
     
     var items = [SearchItem]()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,8 +24,8 @@ class SearchResultTableViewController: UITableViewController {
     func fetchMatchingItems() {
         self.items = []
         self.tableView.reloadData()
-
         let searchItemController = SearchItemController()
+        
         let searchTerm = searchBar.text ?? ""
 
         if !searchTerm.isEmpty {
@@ -37,17 +38,22 @@ class SearchResultTableViewController: UITableViewController {
                     self.items = fetchedItems
                     self.tableView.reloadData()
                 } catch {
-                    print("Error fetching data from \(error)")
+                    print("Error fetching data \(error)")
                 }
             }
         }
     }
     
-    
-    func configure() {
+    @IBSegueAction func showSearchItemDetails(_ coder: NSCoder, sender: Any?) -> DetailsViewController? {
         
+        guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
+            return nil
+        }
+        let item = items[indexPath.row]
+        
+        return DetailsViewController(coder: coder, searchItem: item)
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,12 +100,6 @@ class SearchResultTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -108,8 +108,6 @@ class SearchResultTableViewController: UITableViewController {
         return true
     }
     */
-
-
 
 
 }
