@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A553812628749C20005F2E95 /* LifeFormItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553812528749C20005F2E95 /* LifeFormItem.swift */; };
+		A553812628749C20005F2E95 /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553812528749C20005F2E95 /* Details.swift */; };
 		A553812828749F0D005F2E95 /* SearchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553812728749F0D005F2E95 /* SearchItem.swift */; };
 		A553812A287577F8005F2E95 /* PrettyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5538129287577F8005F2E95 /* PrettyJSON.swift */; };
 		A5C4FF9528747DDC00B69545 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C4FF9428747DDC00B69545 /* AppDelegate.swift */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A553812528749C20005F2E95 /* LifeFormItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeFormItem.swift; sourceTree = "<group>"; };
+		A553812528749C20005F2E95 /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		A553812728749F0D005F2E95 /* SearchItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchItem.swift; sourceTree = "<group>"; };
 		A5538129287577F8005F2E95 /* PrettyJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyJSON.swift; sourceTree = "<group>"; };
 		A5C4FF9128747DDC00B69545 /* Life-FormSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life-FormSearch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +100,7 @@
 		A5F6436A2875834B00F37C04 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A553812528749C20005F2E95 /* LifeFormItem.swift */,
+				A553812528749C20005F2E95 /* Details.swift */,
 				A553812728749F0D005F2E95 /* SearchItem.swift */,
 			);
 			path = Models;
@@ -178,7 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A553812828749F0D005F2E95 /* SearchItem.swift in Sources */,
-				A553812628749C20005F2E95 /* LifeFormItem.swift in Sources */,
+				A553812628749C20005F2E95 /* Details.swift in Sources */,
 				A5C4FF9528747DDC00B69545 /* AppDelegate.swift in Sources */,
 				A553812A287577F8005F2E95 /* PrettyJSON.swift in Sources */,
 				A5C4FF9728747DDC00B69545 /* SceneDelegate.swift in Sources */,

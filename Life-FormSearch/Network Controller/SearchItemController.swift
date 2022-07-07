@@ -11,7 +11,8 @@ import UIKit
 class SearchItemController {
     
     enum SearchItemError: Error, LocalizedError {
-        case itemsNotFound
+        case itemsFromSearchNotFound
+        case itemsFromPageAPINotFound
     }
     
     func fetchItemsFromSearch(matching query: [String : String]) async throws -> [SearchItem] {
@@ -22,7 +23,7 @@ class SearchItemController {
         let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw SearchItemError.itemsNotFound
+            throw SearchItemError.itemsFromSearchNotFound
         }
         data.prettyPrintedJSONString()
         
@@ -32,16 +33,40 @@ class SearchItemController {
         return searchResponse.results
     }
     
-    func fetchItemFromPageAPI(with id: Int, matching query: [String : String]) async throws -> [] {
+    func fetchItemFromPageAPI(with id: Int, matching query: [String : String]) async throws -> [TaxonConcept] {
         
-        var urlComponents = URLComponents(string: "https://eol.org/api/pages/1.0/" + "String(\(id))" + ".json?taxonomy=true&images_per_page=1&language=en")!
+        var urlComponents = URLComponents(string: "https://eol.org/api/pages/1.0/" + "String(\(id))" + ".json")!
         urlComponents.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
         
         let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
         
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw SearchItemError.itemsFromPageAPINotFound
+        }
+        data.prettyPrintedJSONString()
         
+        let decoder = JSONDecoder()
+        let searchResponse = try decoder.decode(PageApiResponse.self, from: data)
         
+        return searchResponse.taxonConcept
     }
     
+    func fetchItemFromHierarchyAPI(with id: Int, matching query: [String : String]) async throws -> [TaxonConcept] {
+        
+        let urlComponents = URLComponents(string: "https://eol.org/api/hierarchy_entries/1.0/" + "String(\(id))" + ".json?language=en")!
+        
+        let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw SearchItemError.itemsFromPageAPINotFound
+        }
+        data.prettyPrintedJSONString()
+        
+        let decoder = JSONDecoder()
+        let searchResponse = try decoder.decode(PageApiResponse.self, from: data)
+        
+        return searchResponse.taxonConcept
+        
+    }
 
 }
