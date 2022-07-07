@@ -8,19 +8,6 @@
 import Foundation
 import UIKit
 
-struct LifeFormItem {
-    var image: UIImage?
-    var taxonomySource: String
-    var scientificName: String
-    var kingdom: String
-    var phylum: String
-//    var class: String
-    var order: String
-    var family: String
-    var genus: String
-    
-}
-
 struct PageApiResponse: Codable {
     let taxonConcept: [TaxonConcept]
 }

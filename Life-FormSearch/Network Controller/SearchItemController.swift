@@ -51,7 +51,7 @@ class SearchItemController {
         return searchResponse.taxonConcept
     }
     
-    func fetchItemFromHierarchyAPI(with id: Int, matching query: [String : String]) async throws -> [TaxonConcept] {
+    func fetchItemFromHierarchyAPI(with id: Int, matching query: [String : String]) async throws -> HierarchyAPIResponse {
         
         let urlComponents = URLComponents(string: "https://eol.org/api/hierarchy_entries/1.0/" + "String(\(id))" + ".json?language=en")!
         
@@ -63,9 +63,9 @@ class SearchItemController {
         data.prettyPrintedJSONString()
         
         let decoder = JSONDecoder()
-        let searchResponse = try decoder.decode(PageApiResponse.self, from: data)
+        let searchResponse = try decoder.decode(HierarchyAPIResponse.self, from: data)
         
-        return searchResponse.taxonConcept
+        return searchResponse
         
     }
 
