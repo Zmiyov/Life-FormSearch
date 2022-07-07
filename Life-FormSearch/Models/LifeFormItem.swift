@@ -20,3 +20,50 @@ struct LifeFormItem {
     var genus: String
     
 }
+
+struct PageApiResponse {
+    let taxonConcept: [TaxonConcept]
+}
+
+struct TaxonConcept {
+    var identifier: Int
+    var scientificName: String
+    var taxonConcepts: [TaxonConcepts]
+    var dataObjects: [DataObjects]
+}
+
+struct TaxonConcepts {
+    var identifier: Int
+    var scientificName: String
+    var name: String
+    var nameAccordingTo: String
+    var canonicalForm: String
+    var sourceIdentifier: String
+}
+
+struct DataObjects {
+    var identifier: String
+    var dataObjectVersionID: Int
+    var dataType: String
+    var dataSubtype: String
+    var vettedStatus: String
+    var mediumType: String
+    var dataRating: String
+    var mimeType: String
+    var created: String
+    var modified: String
+    var license: String
+    var license_id: Int
+    var rightsHolder: String
+    var source: String
+    var mediaURL: String
+    var eolMediaURL: String
+    var eolThumbnailURL: String
+    var agents: [Agents]
+}
+
+struct Agents {
+    var full_name: String
+    var homepage: String
+    var role: String
+}

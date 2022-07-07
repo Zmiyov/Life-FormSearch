@@ -55,6 +55,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A58365C42875ED340099982F /* Network Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A5F6436B2875837100F37C04 /* SearchItemController.swift */,
+			);
+			path = "Network Controller";
+			sourceTree = "<group>";
+		};
 		A5C4FF8828747DDC00B69545 = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +82,7 @@
 		A5C4FF9328747DDC00B69545 /* Life-FormSearch */ = {
 			isa = PBXGroup;
 			children = (
-				A5F6436B2875837100F37C04 /* SearchItemController.swift */,
+				A58365C42875ED340099982F /* Network Controller */,
 				A5C4FF9428747DDC00B69545 /* AppDelegate.swift */,
 				A5C4FF9628747DDC00B69545 /* SceneDelegate.swift */,
 				A5C4FF9A28747DDC00B69545 /* Main.storyboard */,

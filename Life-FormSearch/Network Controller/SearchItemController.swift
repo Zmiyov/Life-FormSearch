@@ -14,7 +14,7 @@ class SearchItemController {
         case itemsNotFound
     }
     
-    func fetchItems(matching query: [String : String]) async throws -> [SearchItem] {
+    func fetchItemsFromSearch(matching query: [String : String]) async throws -> [SearchItem] {
         
         var urlComponents = URLComponents(string: "https://eol.org/api/search/1.0.json")!
         urlComponents.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
@@ -30,6 +30,17 @@ class SearchItemController {
         let searchResponse =  try decoder.decode(SearchResponse.self, from: data)
         
         return searchResponse.results
+    }
+    
+    func fetchItemFromPageAPI(with id: Int, matching query: [String : String]) async throws -> [] {
+        
+        var urlComponents = URLComponents(string: "https://eol.org/api/pages/1.0/" + "String(\(id))" + ".json?taxonomy=true&images_per_page=1&language=en")!
+        urlComponents.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+        
+        let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
+        
+        
+        
     }
     
 

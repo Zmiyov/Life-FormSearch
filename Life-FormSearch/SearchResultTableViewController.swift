@@ -33,7 +33,7 @@ class SearchResultTableViewController: UITableViewController {
 
             Task {
                 do {
-                    let fetchedItems = try await searchItemController.fetchItems(matching: query)
+                    let fetchedItems = try await searchItemController.fetchItemsFromSearch(matching: query)
                     self.items = fetchedItems
                     self.tableView.reloadData()
                 } catch {
@@ -66,8 +66,8 @@ class SearchResultTableViewController: UITableViewController {
         let searchItem = items[indexPath.row]
 
         var content = cell.defaultContentConfiguration()
-        content.text = searchItem.scientificName
-        content.secondaryText = searchItem.commonName
+        content.text = searchItem.commonName
+        content.secondaryText = searchItem.scientificName
         cell.contentConfiguration = content
 
         return cell
