@@ -15,7 +15,7 @@ struct PageApiResponse: Codable {
 struct TaxonConcept: Codable {
 //    var identifier: Int
     var scientificName: String
-    var taxonConcepts: [TaxonConcepts]?
+    var taxonConcepts: [TaxonConcepts]
     var dataObjects: [DataObjects]?
 }
 

@@ -23,10 +23,11 @@ class DetailsViewController: UIViewController {
     
     
     let searchItem: SearchItem
-    var pageAPIItem: TaxonConcept
-    var hierarchyAPIItem: HierarchyAPIResponse
+    var pageAPIItem = [TaxonConcept]()
+    var hierarchyAPIItem = [HierarchyAPIResponse]()
+    let searchItemController = SearchItemController()
     
-    let hierarchyAPIDetails: PageApiResponse
+ //   let hierarchyAPIDetails: PageApiResponse
     
     init?(coder:NSCoder, searchItem: SearchItem) {
         self.searchItem = searchItem
@@ -39,10 +40,48 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchPageAPIItem()
+ //       fetchHierarchyAPIItem()
+        
         updateUI()
     }
     
     func updateUI() {
+        
+        guard let dataObject = pageAPIItem[0].dataObjects?[0] else { return }
+        
+        if let rights = dataObject.rightsHolder {
+            rightLabel.text = rights
+        } else {
+            rightLabel.text = ((dataObject.agents?[0].role) ?? "") + ", " + (dataObject.agents?[0].full_name ?? "")
+        }
+        urlLicence.text = dataObject.license
+        taxonomySource.text = pageAPIItem[0].taxonConcepts[0].nameAccordingTo
+        scientificName.text = pageAPIItem[0].taxonConcepts[0].scientificName
+        
+        let ancestors = hierarchyAPIItem[0].ancestors
+        for taxonRank in ancestors {
+            if taxonRank.taxonRank == "kingdom" {
+                kingdomLabel.text = taxonRank.scientificName
+            } else if taxonRank.taxonRank == "phylum" {
+                phylumLabel.text = taxonRank.scientificName
+            } else if taxonRank.taxonRank == "class" {
+                classLabel.text = taxonRank.scientificName
+            } else if taxonRank.taxonRank == "order" {
+                orderLabel.text = taxonRank.scientificName
+            } else if taxonRank.taxonRank == "family" {
+                familyLabel.text = taxonRank.scientificName
+            } else if taxonRank.taxonRank == "genus" {
+                genusLabel.text = taxonRank.scientificName
+            }
+        }
+        
+        guard let imageURL = URL(string: dataObject.eolMediaURL) else { return }
+        Task.init {
+            if let imageItem = try? await searchItemController.fetchImageFromPageAPI(from: imageURL) {
+                image.image = imageItem
+            }
+        }
         
     }
     
@@ -54,22 +93,25 @@ class DetailsViewController: UIViewController {
         Task {
             do {
                 let fetchedPageAPIDetails = try await searchItemController.fetchItemFromPageAPI(with: pageId, matching: query)
-                self.pageAPIItem = fetchedPageAPIDetails
+                self.pageAPIItem.append(fetchedPageAPIDetails)
             } catch {
-                print("Error fetching data \(error)")
+                print("Error fetching pageAPIItem data \(error)")
             }
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func fetchHierarchyAPIItem() {
+        
+        let hierarchyId = pageAPIItem[0].taxonConcepts[0].identifier
+        let query = ["cache_ttl" : ""]
+        
+        Task {
+            do {
+                let fetchedHierarchyAPIDetails = try await searchItemController.fetchItemFromHierarchyAPI(with: hierarchyId, matching: query)
+                self.hierarchyAPIItem.append(fetchedHierarchyAPIDetails)
+            } catch {
+                print("Error fetching hierarchyAPIItem data \(error)")
+            }
+        }
     }
-    */
-
 }

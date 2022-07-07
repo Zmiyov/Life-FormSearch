@@ -35,7 +35,7 @@ class SearchItemController {
         return searchResponse.results
     }
     
-    func fetchItemFromPageAPI(with id: Int, matching query: [String : String]) async throws -> [TaxonConcept] {
+    func fetchItemFromPageAPI(with id: Int, matching query: [String : String]) async throws -> TaxonConcept {
         
         var urlComponents = URLComponents(string: "https://eol.org/api/pages/1.0/" + "String(\(id))" + ".json")!
         urlComponents.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
@@ -48,9 +48,9 @@ class SearchItemController {
         data.prettyPrintedJSONString()
         
         let decoder = JSONDecoder()
-        let searchResponse = try decoder.decode(PageApiResponse.self, from: data)
+        let searchResponse = try decoder.decode(TaxonConcept.self, from: data)
         
-        return searchResponse.taxonConcept
+        return searchResponse
     }
     
     func fetchItemFromHierarchyAPI(with id: Int, matching query: [String : String]) async throws -> HierarchyAPIResponse {
