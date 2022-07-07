@@ -13,6 +13,8 @@ class SearchItemController {
     enum SearchItemError: Error, LocalizedError {
         case itemsFromSearchNotFound
         case itemsFromPageAPINotFound
+        case itemsFromHierarchyAPINotFound
+        case imageDataMissing
     }
     
     func fetchItemsFromSearch(matching query: [String : String]) async throws -> [SearchItem] {
@@ -58,7 +60,7 @@ class SearchItemController {
         let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw SearchItemError.itemsFromPageAPINotFound
+            throw SearchItemError.itemsFromHierarchyAPINotFound
         }
         data.prettyPrintedJSONString()
         
@@ -67,6 +69,20 @@ class SearchItemController {
         
         return searchResponse
         
+    }
+    
+    func fetchImageFromPageAPI(from url: URL) async throws -> UIImage {
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+                  throw SearchItemError.imageDataMissing
+              }
+        guard let image = UIImage(data: data) else {
+            throw SearchItemError.imageDataMissing
+        }
+        return image
     }
 
 }
