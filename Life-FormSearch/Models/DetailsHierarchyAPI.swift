@@ -17,7 +17,7 @@ struct Ancestors: Codable {
     var taxonConceptID: Int
     var taxonID: Int
     var sourceIdentifier: String
-    var taxonRank: String
+    var taxonRank: String?
     var parentNameUsageID: Int
     var scientificName: String
 }

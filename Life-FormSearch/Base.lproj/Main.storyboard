@@ -49,7 +49,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="tvK-az-tdE" kind="show" destinationCreationSelector="showSearchItemDetails:" id="bXO-AC-4u6"/>
+                                    <segue destination="tvK-az-tdE" kind="show" destinationCreationSelector="showDetails:sender:" id="bXO-AC-4u6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -43,19 +43,19 @@ class DetailsViewController: UIViewController {
         fetchPageAPIItem()
  //       fetchHierarchyAPIItem()
         
-        updateUI()
+ //       updateUI()
     }
     
     func updateUI() {
         
-        guard let dataObject = pageAPIItem[0].dataObjects?[0] else { return }
-        
-        if let rights = dataObject.rightsHolder {
-            rightLabel.text = rights
-        } else {
-            rightLabel.text = ((dataObject.agents?[0].role) ?? "") + ", " + (dataObject.agents?[0].full_name ?? "")
-        }
-        urlLicence.text = dataObject.license
+//        guard let dataObject = pageAPIItem[0].dataObjects?[0] else { return }
+//
+//        if let rights = dataObject.rightsHolder {
+//            rightLabel.text = rights
+//        } else {
+//            rightLabel.text = ((dataObject.agents?[0].role) ?? "") + ", " + (dataObject.agents?[0].full_name ?? "")
+//        }
+//        urlLicence.text = dataObject.license
         taxonomySource.text = pageAPIItem[0].taxonConcepts[0].nameAccordingTo
         scientificName.text = pageAPIItem[0].taxonConcepts[0].scientificName
         
@@ -76,12 +76,12 @@ class DetailsViewController: UIViewController {
             }
         }
         
-        guard let imageURL = URL(string: dataObject.eolMediaURL) else { return }
-        Task.init {
-            if let imageItem = try? await searchItemController.fetchImageFromPageAPI(from: imageURL) {
-                image.image = imageItem
-            }
-        }
+//        guard let imageURL = URL(string: dataObject.eolMediaURL) else { return }
+//        Task.init {
+//            if let imageItem = try? await searchItemController.fetchImageFromPageAPI(from: imageURL) {
+//                image.image = imageItem
+//            }
+//        }
         
     }
     
@@ -93,9 +93,9 @@ class DetailsViewController: UIViewController {
         Task {
             do {
                 let fetchedPageAPIDetails = try await searchItemController.fetchItemFromPageAPI(with: pageId, matching: query)
-                self.pageAPIItem.append(fetchedPageAPIDetails)
+                pageAPIItem.append(fetchedPageAPIDetails)
             } catch {
-                print("Error fetching pageAPIItem data \(error)")
+                print("Error fetching pageAPIItem data \(error.localizedDescription)")
             }
         }
     }
@@ -108,7 +108,7 @@ class DetailsViewController: UIViewController {
         Task {
             do {
                 let fetchedHierarchyAPIDetails = try await searchItemController.fetchItemFromHierarchyAPI(with: hierarchyId, matching: query)
-                self.hierarchyAPIItem.append(fetchedHierarchyAPIDetails)
+                hierarchyAPIItem.append(fetchedHierarchyAPIDetails)
             } catch {
                 print("Error fetching hierarchyAPIItem data \(error)")
             }

@@ -44,8 +44,7 @@ class SearchResultTableViewController: UITableViewController {
         }
     }
     
-    @IBSegueAction func showSearchItemDetails(_ coder: NSCoder, sender: Any?) -> DetailsViewController? {
-        
+    @IBSegueAction func showDetails(_ coder: NSCoder, sender: Any?) -> DetailsViewController? {
         guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
             return nil
         }
