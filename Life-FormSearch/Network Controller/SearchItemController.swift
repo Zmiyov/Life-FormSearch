@@ -37,7 +37,7 @@ class SearchItemController {
         
         var urlComponents = URLComponents(string: "https://eol.org/api/pages/1.0/" + String(id) + ".json")!
         urlComponents.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
-//        print(urlComponents.url)
+        print(urlComponents.url)
         
         let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
         

@@ -6,12 +6,13 @@
 //
 
 import UIKit
+import SafariServices
 
 class DetailsViewController: UIViewController {
 
     @IBOutlet var image: UIImageView!
     @IBOutlet var rightLabel: UILabel!
-    @IBOutlet var urlLicence: UILabel!
+    @IBOutlet var urlLicence: UIButton!
     @IBOutlet var taxonomySource: UILabel!
     @IBOutlet var scientificName: UILabel!
     @IBOutlet var kingdomLabel: UILabel!
@@ -51,10 +52,10 @@ class DetailsViewController: UIViewController {
         } else {
             rightLabel.text = ((dataObject.agents?[0].role) ?? "") + ", " + (dataObject.agents?[0].fullName ?? "")
         }
-        urlLicence.text = dataObject.license
+        urlLicence.setTitle(dataObject.license, for: .normal)
         
         taxonomySource.text = pageAPIItem[0].taxonConcepts[0].nameAccordingTo
-        scientificName.text = pageAPIItem[0].taxonConcepts[0].scientificName
+        scientificName.text = pageAPIItem[0].scientificName
         
         
 //        let ancestors = hierarchyAPIItem[0].ancestors
@@ -111,6 +112,13 @@ class DetailsViewController: UIViewController {
             } catch {
                 print("Error fetching hierarchyAPIItem data \(error)")
             }
+        }
+    }
+    @IBAction func urlButtonTapped(_ sender: Any) {
+        guard let license = pageAPIItem[0].dataObjects?[0].license else { return }
+        if let url = URL(string: license) {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
         }
     }
 }

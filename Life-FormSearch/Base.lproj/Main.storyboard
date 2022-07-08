@@ -76,7 +76,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FZ1-GO-6RD">
-                                <rect key="frame" x="10" y="98.000000000000028" width="370" height="327.66666666666674"/>
+                                <rect key="frame" x="10" y="98.000000000000028" width="370" height="341.66666666666674"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ct3-vE-DYA">
                                         <rect key="frame" x="10" y="0.0" width="350" height="262.66666666666669"/>
@@ -85,7 +85,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zja-dE-uNm">
-                                        <rect key="frame" x="10" y="282.66666666666669" width="350" height="45"/>
+                                        <rect key="frame" x="10" y="282.66666666666669" width="350" height="59"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rights Holder   " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0fC-3k-2yJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="350" height="17"/>
@@ -93,12 +93,16 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPu-wR-a0M">
-                                                <rect key="frame" x="0.0" y="27" width="350" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" red="0.44491933220000002" green="0.62383360139999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vei-zv-4KU">
+                                                <rect key="frame" x="0.0" y="27" width="350" height="32"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="URL">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="urlButtonTapped:" destination="tvK-az-tdE" eventType="touchUpInside" id="a5Y-c4-u4T"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -110,7 +114,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0Ek-b0-ocM">
-                                <rect key="frame" x="20" y="445.66666666666674" width="350" height="253"/>
+                                <rect key="frame" x="20" y="459.66666666666674" width="350" height="253"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hyd-zn-pCk">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="40.666666666666664"/>
@@ -316,7 +320,7 @@
                         <outlet property="rightLabel" destination="0fC-3k-2yJ" id="tN2-Lh-l1S"/>
                         <outlet property="scientificName" destination="4IY-lV-IDj" id="ncJ-Yi-W88"/>
                         <outlet property="taxonomySource" destination="YTZ-Uo-f5K" id="ltb-v3-dYz"/>
-                        <outlet property="urlLicence" destination="OPu-wR-a0M" id="AFy-6n-v02"/>
+                        <outlet property="urlLicence" destination="vei-zv-4KU" id="R3L-Ei-6TN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v4c-XQ-2lf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
