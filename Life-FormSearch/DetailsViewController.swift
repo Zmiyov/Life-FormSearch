@@ -21,13 +21,10 @@ class DetailsViewController: UIViewController {
     @IBOutlet var familyLabel: UILabel!
     @IBOutlet var genusLabel: UILabel!
     
-    
     let searchItem: SearchItem
     var pageAPIItem = [TaxonConcept]()
     var hierarchyAPIItem = [HierarchyAPIResponse]()
     let searchItemController = SearchItemController()
-    
- //   let hierarchyAPIDetails: PageApiResponse
     
     init?(coder:NSCoder, searchItem: SearchItem) {
         self.searchItem = searchItem
@@ -43,12 +40,6 @@ class DetailsViewController: UIViewController {
         fetchPageAPIItem()
  //       fetchHierarchyAPIItem()
         
-//
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        updateUI()
     }
     
     func updateUI() {
@@ -89,7 +80,6 @@ class DetailsViewController: UIViewController {
                 image.image = imageItem
             }
         }
-        
     }
     
     func fetchPageAPIItem() {
@@ -100,11 +90,8 @@ class DetailsViewController: UIViewController {
         Task {
             do {
                 let fetchedPageAPIDetails = try await searchItemController.fetchItemFromPageAPI(with: pageId, matching: query)
-//                print(fetchedPageAPIDetails)
                 pageAPIItem.append(fetchedPageAPIDetails)
-                print(pageAPIItem[0].taxonConcepts[0].nameAccordingTo)
                 updateUI()
-
             } catch {
                 print("Error fetching pageAPIItem data \(error)")
             }
@@ -120,6 +107,7 @@ class DetailsViewController: UIViewController {
             do {
                 let fetchedHierarchyAPIDetails = try await searchItemController.fetchItemFromHierarchyAPI(with: hierarchyId, matching: query)
                 hierarchyAPIItem.append(fetchedHierarchyAPIDetails)
+                updateUI()
             } catch {
                 print("Error fetching hierarchyAPIItem data \(error)")
             }
