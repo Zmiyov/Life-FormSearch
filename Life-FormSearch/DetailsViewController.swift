@@ -43,45 +43,52 @@ class DetailsViewController: UIViewController {
         fetchPageAPIItem()
  //       fetchHierarchyAPIItem()
         
- //       updateUI()
+//
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        updateUI()
     }
     
     func updateUI() {
         
-//        guard let dataObject = pageAPIItem[0].dataObjects?[0] else { return }
-//
-//        if let rights = dataObject.rightsHolder {
-//            rightLabel.text = rights
-//        } else {
-//            rightLabel.text = ((dataObject.agents?[0].role) ?? "") + ", " + (dataObject.agents?[0].full_name ?? "")
-//        }
-//        urlLicence.text = dataObject.license
+        guard let dataObject = pageAPIItem[0].dataObjects?[0] else { return }
+
+        if let rights = dataObject.rightsHolder {
+            rightLabel.text = rights
+        } else {
+            rightLabel.text = ((dataObject.agents?[0].role) ?? "") + ", " + (dataObject.agents?[0].fullName ?? "")
+        }
+        urlLicence.text = dataObject.license
+        
         taxonomySource.text = pageAPIItem[0].taxonConcepts[0].nameAccordingTo
         scientificName.text = pageAPIItem[0].taxonConcepts[0].scientificName
         
-        let ancestors = hierarchyAPIItem[0].ancestors
-        for taxonRank in ancestors {
-            if taxonRank.taxonRank == "kingdom" {
-                kingdomLabel.text = taxonRank.scientificName
-            } else if taxonRank.taxonRank == "phylum" {
-                phylumLabel.text = taxonRank.scientificName
-            } else if taxonRank.taxonRank == "class" {
-                classLabel.text = taxonRank.scientificName
-            } else if taxonRank.taxonRank == "order" {
-                orderLabel.text = taxonRank.scientificName
-            } else if taxonRank.taxonRank == "family" {
-                familyLabel.text = taxonRank.scientificName
-            } else if taxonRank.taxonRank == "genus" {
-                genusLabel.text = taxonRank.scientificName
-            }
-        }
         
-//        guard let imageURL = URL(string: dataObject.eolMediaURL) else { return }
-//        Task.init {
-//            if let imageItem = try? await searchItemController.fetchImageFromPageAPI(from: imageURL) {
-//                image.image = imageItem
+//        let ancestors = hierarchyAPIItem[0].ancestors
+//        for taxonRank in ancestors {
+//            if taxonRank.taxonRank == "kingdom" {
+//                kingdomLabel.text = taxonRank.scientificName
+//            } else if taxonRank.taxonRank == "phylum" {
+//                phylumLabel.text = taxonRank.scientificName
+//            } else if taxonRank.taxonRank == "class" {
+//                classLabel.text = taxonRank.scientificName
+//            } else if taxonRank.taxonRank == "order" {
+//                orderLabel.text = taxonRank.scientificName
+//            } else if taxonRank.taxonRank == "family" {
+//                familyLabel.text = taxonRank.scientificName
+//            } else if taxonRank.taxonRank == "genus" {
+//                genusLabel.text = taxonRank.scientificName
 //            }
 //        }
+        
+        guard let imageURL = URL(string: dataObject.eolMediaURL) else { return }
+        Task.init {
+            if let imageItem = try? await searchItemController.fetchImageFromPageAPI(from: imageURL) {
+                image.image = imageItem
+            }
+        }
         
     }
     
@@ -93,9 +100,13 @@ class DetailsViewController: UIViewController {
         Task {
             do {
                 let fetchedPageAPIDetails = try await searchItemController.fetchItemFromPageAPI(with: pageId, matching: query)
+//                print(fetchedPageAPIDetails)
                 pageAPIItem.append(fetchedPageAPIDetails)
+                print(pageAPIItem[0].taxonConcepts[0].nameAccordingTo)
+                updateUI()
+
             } catch {
-                print("Error fetching pageAPIItem data \(error.localizedDescription)")
+                print("Error fetching pageAPIItem data \(error)")
             }
         }
     }

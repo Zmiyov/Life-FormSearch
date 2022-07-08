@@ -9,11 +9,16 @@ import Foundation
 import UIKit
 
 struct PageApiResponse: Codable {
-    let taxonConcept: [TaxonConcept]
+    let taxonConcept: TaxonConcept
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.taxonConcept = try container.decode(TaxonConcept.self, forKey: CodingKeys.taxonConcept)
+    }
 }
 
 struct TaxonConcept: Codable {
-//    var identifier: Int
+    
     var scientificName: String
     var taxonConcepts: [TaxonConcepts]
     var dataObjects: [DataObjects]?
@@ -27,13 +32,11 @@ struct TaxonConcept: Codable {
 }
 
 struct TaxonConcepts: Codable {
+    
     var identifier: Int
     var scientificName: String
-//    var name: String
     var nameAccordingTo: String
-//    var canonicalForm: String
-//    var sourceIdentifier: String
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.identifier = try container.decode(Int.self, forKey: CodingKeys.identifier)
@@ -43,23 +46,11 @@ struct TaxonConcepts: Codable {
 }
 
 struct DataObjects: Codable {
-//    var identifier: String
-//    var dataObjectVersionID: Int
-//    var dataType: String
-//    var dataSubtype: String
-//    var vettedStatus: String
-//    var mediumType: String
-//    var dataRating: String
+
     var mimeType: String
-//    var created: String
-//    var modified: String
     var license: String?
-//    var license_id: Int
     var rightsHolder: String?
-//    var source: String
-//    var mediaURL: String
     var eolMediaURL: String
-//    var eolThumbnailURL: String
     var agents: [Agents]?
     
     init(from decoder: Decoder) throws {
@@ -73,8 +64,8 @@ struct DataObjects: Codable {
 }
 
 struct Agents: Codable {
+    
     var fullName: String
-//    var homepage: String?
     var role: String
     
     enum CodingKeys: String, CodingKey {

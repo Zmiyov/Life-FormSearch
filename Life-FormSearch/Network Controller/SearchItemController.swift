@@ -27,7 +27,7 @@ class SearchItemController {
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw SearchItemError.itemsFromSearchNotFound
         }
-        data.prettyPrintedJSONString()
+//        data.prettyPrintedJSONString()
         
         let decoder = JSONDecoder()
         let searchResponse =  try decoder.decode(SearchResponse.self, from: data)
@@ -39,18 +39,19 @@ class SearchItemController {
         
         var urlComponents = URLComponents(string: "https://eol.org/api/pages/1.0/" + String(id) + ".json")!
         urlComponents.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value) }
+        print(urlComponents.url)
         
         let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw SearchItemError.itemsFromPageAPINotFound
         }
-        data.prettyPrintedJSONString()
+        //data.prettyPrintedJSONString()
         
         let decoder = JSONDecoder()
-        let searchResponse = try decoder.decode(TaxonConcept.self, from: data)
+        let details = try decoder.decode(PageApiResponse.self, from: data)
         
-        return searchResponse
+        return details.taxonConcept
     }
     
     func fetchItemFromHierarchyAPI(with id: Int, matching query: [String : String]) async throws -> HierarchyAPIResponse {
